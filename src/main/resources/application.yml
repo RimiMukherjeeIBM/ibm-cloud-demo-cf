@@ -1,0 +1,24 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://root:THXhBeAibOr6uEJU@cluster0.ehojh.mongodb.net/?retryWrites=true&w=majority
+      database: CustomerDb
+      prepare.database: CustomerDb
+      prepare.port: 28717
+      prepare.autoConnectRetry: true
+      prepare.socketKeepAlive: true
+      prepare.socketTimeout: 1500
+      prepare.maxConnectionIdleTime: 60000
+      prepare.maxConnectionLifeTime: 0
+
+swagger:
+  api-info:
+    title: Customer Service Api Documentation
+    description: Customer API Details
+    version: v1.0
+    termsOfServiceUrl: test
+    contact:
+      name: IBM Cloud Demo
+      email: Rimi.Mukherjee@ibm.com
+    license: Apache 2.0
+    licenseUrl: http://www.apache.org/licenses/LICENSE-2.0
