@@ -1,7 +1,7 @@
 ---
 applications:
   - name: ibm-cloud-demo
-    disk_quota: 2048M
+    disk_quota: 1024M
     memory: 512M
     buildpack: java_buildpack
     instances: 1
