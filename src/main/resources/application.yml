@@ -11,6 +11,11 @@ spring:
       prepare.maxConnectionIdleTime: 60000
       prepare.maxConnectionLifeTime: 0
 
+cloudant:
+  url: https://apikey-v2-8a7dtnq8a2ss5yhwazz3b59kbtnyqy14oa9rhnnh8bb:a1e40a83116bfbf7db9d5eccf241aa21@8312273a-b6a1-4dff-93a3-26cb4b77f945-bluemix.cloudantnosqldb.appdomain.cloud
+  username: apikey-v2-8a7dtnq8a2ss5yhwazz3b59kbtnyqy14oa9rhnnh8bb
+  password: a1e40a83116bfbf7db9d5eccf241aa21
+  dbname: customerdb
 swagger:
   api-info:
     title: Customer Service Api Documentation
