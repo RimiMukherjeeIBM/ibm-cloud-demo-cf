@@ -31,8 +31,8 @@ public class CustomerController {
         customerService.updateCustomer(customer);
     }
 
-    @DeleteMapping("/delete/{customerId}")
-    public void deleteCustomer(@PathVariable("customerId") String customerId){
-        customerService.deleteCustomer(customerId);
+    @DeleteMapping("/delete/{customerId}/revision/{revision}")
+    public void deleteCustomer(@PathVariable("customerId") String customerId, @PathVariable("revision") String revision){
+        customerService.deleteCustomer(customerId, revision);
     }
 }

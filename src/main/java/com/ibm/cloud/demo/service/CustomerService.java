@@ -1,10 +1,13 @@
 package com.ibm.cloud.demo.service;
 
+import com.cloudant.client.org.lightcouch.NoDocumentException;
 import com.ibm.cloud.demo.dto.CustomerDto;
+import com.ibm.cloud.demo.exception.ApiException;
 import com.ibm.cloud.demo.mapper.CustomerMapper;
 import com.ibm.cloud.demo.model.Customer;
 import com.ibm.cloud.demo.repository.CustomerRepository;
 import com.ibm.cloud.demo.util.Utils;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -24,15 +27,21 @@ public class CustomerService {
         return customerRepository.save(customerMapper.getCustomer(customer));
     }
 
-    public Customer fetchCustomer(String customerId){
-        return customerMapper.getCustomer(customerRepository.findById(customerId, CustomerDto.class).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND)));
+    public Customer fetchCustomer(String customerId) {
+        try {
+            return customerMapper.getCustomer(customerRepository.findById(customerId, CustomerDto.class));
+        } catch (NoDocumentException ex) {
+            throw new ApiException(HttpStatus.NOT_FOUND, ex.getMessage(), "Customer Not Found for id : " + customerId, ex.getCause());
+        } catch (Exception e) {
+            throw new ApiException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), "Not able to retrieve customer for id : " + customerId, e.getCause());
+        }
     }
 
     public String updateCustomer(Customer customer){
         return customerRepository.Update(customerMapper.getCustomer(customer));
     }
 
-    public String deleteCustomer(String id) {
-        return customerRepository.delete(id, customerRepository.findById(id, CustomerDto.class).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND)).get_rev());
+    public String deleteCustomer(String id, String revision) {
+        return customerRepository.delete(id, revision);
     }
 }

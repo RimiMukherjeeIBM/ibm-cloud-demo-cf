@@ -21,8 +21,8 @@ public interface CloudantRepository<K, V> {
         return getCloudantDatabase().save(customerDto).getId();
     }
 
-    public default <V> Optional<V> findById(String id, Class<V> classType){
-        return Optional.ofNullable(getCloudantDatabase().find(classType, id));
+    public default <V> V findById(String id, Class<V> classType) throws Exception{
+        return getCloudantDatabase().find(classType, id);
     }
 
     public default String Update(CustomerDto customerDto){

@@ -14,6 +14,7 @@ public class CustomerMapper {
     public CustomerDto getCustomer(Customer customer) {
         final CustomerDto customerDto = new CustomerDto();
         customerDto.set_id(customer.getCustomerId());
+        customerDto.set_rev(customer.getRevision());
         customerDto.setFirstName(customer.getFirstName());
         customerDto.setLastName(customer.getLastName());
         customerDto.setPhoneNo(customer.getPhoneNo());
@@ -35,6 +36,7 @@ public class CustomerMapper {
     public Customer getCustomer(CustomerDto customerDto) {
         final Customer customer = new Customer();
         customer.setCustomerId(customerDto.get_id());
+        customer.setRevision(customerDto.get_rev());
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
         customer.setPhoneNo(customerDto.getPhoneNo());
