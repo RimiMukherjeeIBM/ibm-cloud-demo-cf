@@ -28,11 +28,11 @@ public class CustomerService {
         return customerMapper.getCustomer(customerRepository.findById(customerId, CustomerDto.class).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND)));
     }
 
-    public void updateCustomer(Customer customer){
-
+    public String updateCustomer(Customer customer){
+        return customerRepository.Update(customerMapper.getCustomer(customer));
     }
 
-    public void deleteCustomer(String id){
-
+    public String deleteCustomer(String id) {
+        return customerRepository.delete(id, customerRepository.findById(id, CustomerDto.class).orElseThrow(() -> new HttpClientErrorException(HttpStatus.NOT_FOUND)).get_rev());
     }
 }

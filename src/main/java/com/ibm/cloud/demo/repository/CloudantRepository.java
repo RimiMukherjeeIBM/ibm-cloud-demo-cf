@@ -28,7 +28,7 @@ public interface CloudantRepository<K, V> {
     public default String Update(CustomerDto customerDto){
         return getCloudantDatabase().update(customerDto).getId();
     }
-    public default String delete(CustomerDto customerDto){
-        return getCloudantDatabase().remove(customerDto).getId();
+    public default String delete(String id, String rev){
+        return getCloudantDatabase().remove(id, rev).getId();
     }
 }

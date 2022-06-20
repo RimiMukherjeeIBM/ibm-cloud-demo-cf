@@ -13,9 +13,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class CustomerDto implements Serializable {
     private String _id;
+    private String _rev;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNo;
-    private AddressDto addressDto;
+    private AddressDto address;
 }
